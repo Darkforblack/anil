@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Form</title>
+  <!-- Add Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom CSS for Login Form */
+    .login-container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: transparent;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-title {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .login-form .form-control {
+      border-radius: 3px;
+      margin-bottom: 10px;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      box-shadow: none;
+    }
+
+    .login-form .btn {
+     
+      background-color: transparent;
+      color: black;
+    }
+    
+    .star {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      color: aqua;
+      background-color: aqua;
+      box-shadow: 0 0 5px 1px #fff;
+      animation: star-animation 5s infinite;
+    }
+    
+    @keyframes star-animation {
+      0% {
+        opacity: 0;
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(0.2);
+      }
+    }
+    
+    body{
+      background-image: url('hero-glow.svg');
+      background-image: url("media/assets/img/hero-glow.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: #ad38f6;
+    }
+    
+    :root {
+      --sub-nav-mktg-shadow: 0 0 0 1px rgba(53, 72, 91, 0.14), 0 3px 2px rgba(0, 0, 0, 0.04), 0 7px 7px rgba(0, 0, 0, 0.03);
+    }
+    .login-form .form-control {
+      border-radius: 3px;
+      margin-bottom: 10px;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      box-shadow: none;
+    }
+    .login-form .form-control::placeholder {
+      color: #000;
+    }
+    
+    a{
+      color: aqua;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 login-container">
+        <h2 class="login-title">Login</h2>
+
+        {% if messages %}
+          
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{message}}
+
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+        {% endfor %}
+
+    {% endif %}
+
+
+        <form  method="post" class="login-form"   >
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="username" id="login_username" name="login_username">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" id="login_password" name="login_password">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="cn" style="text-align: center;">
+    <p>Don't have an account? <a href="/register">Register here</a></p>
+  </div>
+  
+  <script>
+    // Add stars to the background
+    const container = document.querySelector('.container');
+    const numStars = 30;
+    
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      container.appendChild(star);
+    }
+  </script>
+
+  <!-- Add Bootstrap JS link -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
